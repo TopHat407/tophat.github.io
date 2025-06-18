@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bd8sq2losrq0y"]
+
+[ext_resource type="PackedScene" uid="uid://lbftc0kvgn3f" path="res://enemy.tscn" id="1_mh2f2"]
+[ext_resource type="Script" path="res://main.gd" id="1_tfw0u"]
+[ext_resource type="PackedScene" uid="uid://d0xrjcb5g1hu6" path="res://player.tscn" id="2_4fgri"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_q5jbs"]
+vertices = PackedVector2Array(9.96094, 12.9766, 1144.98, 11.0078, 1144.86, 94, 408.391, 94, 8.77344, 402, 408.391, 190, 746.797, 402, 1144.71, 190, 1144.01, 641.992, 746.797, 498, 8.03125, 641, 8.46875, 498)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(9, 8, 10, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 3, 1155, 1, 1154, 652, -2, 651)])
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ra56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05xec"]
+size = Vector2(725.609, 76)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k3f77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx2wo"]
+size = Vector2(727.609, 76)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_tfw0u")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_q5jbs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="NavigationRegion2D"]
+physics_material_override = SubResource("PhysicsMaterial_4ra56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D2"]
+position = Vector2(781.195, 142)
+shape = SubResource("RectangleShape2D_05xec")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D"]
+physics_material_override = SubResource("PhysicsMaterial_k3f77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3"]
+position = Vector2(373, 450)
+shape = SubResource("RectangleShape2D_hx2wo")
+
+[node name="enemy" parent="." instance=ExtResource("1_mh2f2")]
+position = Vector2(975, 56)
+scale = Vector2(0.3, 0.3)
+SPEED = 200.0
+
+[node name="player" parent="." instance=ExtResource("2_4fgri")]
+position = Vector2(447, 344)
+scale = Vector2(0.3, 0.3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="patrol 1" type="Node2D" parent="."]
+position = Vector2(973, 56)
+
+[node name="patrol 2" type="Node2D" parent="."]
+position = Vector2(1028, 596)
+
+[editable path="enemy"]

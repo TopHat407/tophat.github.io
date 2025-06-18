@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://cco2favycmnlt"]
+
+[ext_resource type="PackedScene" uid="uid://bt22aueia7usb" path="res://scenes/character_body_3d.tscn" id="1_shbbi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s31e7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xt5mv"]
+sky_material = SubResource("ProceduralSkyMaterial_s31e7")
+
+[sub_resource type="Environment" id="Environment_jq0fs"]
+background_mode = 2
+sky = SubResource("Sky_xt5mv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_es67d"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nbnbk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u785i"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jq0fs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_shbbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80855, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_es67d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 0.3, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_nbnbk")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 0.3, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_u785i")

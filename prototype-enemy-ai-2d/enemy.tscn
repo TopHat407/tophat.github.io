@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://lbftc0kvgn3f"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_meoyb"]
+[ext_resource type="Texture2D" uid="uid://8mks14iiki2r" path="res://icon.svg" id="2_3xm4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saqe4"]
+size = Vector2(128, 128)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_cfwym"]
+points = PackedVector2Array(0, 0, 500, 300, 500, -300)
+
+[sub_resource type="LabelSettings" id="LabelSettings_igvar"]
+font_size = 40
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_kc5sl"]
+points = PackedVector2Array(0, 0, 100, 100, 100, -100)
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_meoyb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_saqe4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3xm4s")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[node name="view" type="Area2D" parent="."]
+position = Vector2(64, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="view"]
+shape = SubResource("ConvexPolygonShape2D_cfwym")
+
+[node name="patrol_1_timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="patrol_2_timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 40.0
+offset_right = 64.0
+offset_bottom = 63.0
+label_settings = SubResource("LabelSettings_igvar")
+
+[node name="hitbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(64, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("ConvexPolygonShape2D_kc5sl")
+debug_color = Color(0.350864, 0.0841669, 0.608618, 0.42)
+
+[node name="hit_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="view" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="view" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="patrol_1_timer" to="." method="_on_patrol_1_timer_timeout"]
+[connection signal="timeout" from="patrol_2_timer" to="." method="_on_patrol_2_timer_timeout"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

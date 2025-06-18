@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0xrjcb5g1hu6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ymebj"]
+[ext_resource type="Texture2D" uid="uid://8mks14iiki2r" path="res://icon.svg" id="2_26oig"]
+[ext_resource type="Texture2D" uid="uid://cepda67mfiaj0" path="res://health-2.png" id="3_suarw"]
+[ext_resource type="Texture2D" uid="uid://dbd5bckg2s7kk" path="res://health-3.png" id="4_dk7y1"]
+[ext_resource type="Texture2D" uid="uid://6fo3a5cix81x" path="res://health-1.png" id="5_irc01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yy3a"]
+size = Vector2(128, 128)
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_ymebj")
+kb_power = 15000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4yy3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_26oig")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="health" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 224.0
+offset_bottom = 44.0
+texture_under = ExtResource("3_suarw")
+texture_over = ExtResource("4_dk7y1")
+texture_progress = ExtResource("5_irc01")
