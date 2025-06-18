@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbtf27wrcptx3"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_e0xuk"]
+[ext_resource type="FontFile" uid="uid://d1dqeqtblupfy" path="res://fonts/ice-pixel7/ice_pixel-7.ttf" id="1_wrpoi"]
+[ext_resource type="AudioStream" uid="uid://bkn80la2b6484" path="res://audio/electronic-uplifting-retro-game-hidden-gem-short-version-210310.mp3" id="3_ufl16"]
+[ext_resource type="AudioStream" uid="uid://cbgk5yrs5l2su" path="res://audio/aggressive-huge-hit-logo-139134.mp3" id="4_v2xpt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4jk0p"]
+font = ExtResource("1_wrpoi")
+font_size = 120
+
+[node name="MAIN MENU" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e0xuk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2276.0
+offset_bottom = 1099.0
+color = Color(0.877701, 0.290104, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 208.0
+offset_right = 1238.0
+offset_bottom = 328.0
+text = "SNOW GAME"
+label_settings = SubResource("LabelSettings_4jk0p")
+
+[node name="START" type="Button" parent="."]
+layout_mode = 0
+offset_left = 932.0
+offset_top = 434.0
+offset_right = 1060.0
+offset_bottom = 502.0
+theme_override_fonts/font = ExtResource("1_wrpoi")
+theme_override_font_sizes/font_size = 60
+text = "START"
+
+[node name="QUIT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 581.0
+offset_right = 1058.0
+offset_bottom = 649.0
+theme_override_fonts/font = ExtResource("1_wrpoi")
+theme_override_font_sizes/font_size = 60
+text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ufl16")
+volume_db = -10.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_v2xpt")
+volume_db = -10.0
+
+[connection signal="pressed" from="START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]

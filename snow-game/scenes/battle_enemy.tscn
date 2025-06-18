@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkqibuiidyeje"]
+
+[ext_resource type="Texture2D" uid="uid://s2shw4vhyfin" path="res://art/New Piskel (4).png" id="1_0aoc0"]
+[ext_resource type="Script" path="res://scripts/battle_enemy.gd" id="1_vjfa2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajb34"]
+atlas = ExtResource("1_0aoc0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hnel"]
+atlas = ExtResource("1_0aoc0")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xxlk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajb34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hnel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="battle_enemy" type="Node2D"]
+script = ExtResource("1_vjfa2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xxlk6")
+animation = &"idle"
+frame_progress = 0.468248
