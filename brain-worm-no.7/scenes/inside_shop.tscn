@@ -1,0 +1,151 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7535hcc6x3ot"]
+
+[ext_resource type="Texture2D" uid="uid://bh7n5ggewljs" path="res://icon.svg" id="1_lajga"]
+[ext_resource type="Script" uid="uid://8lv5qy3nm0e" path="res://scripts/item.gd" id="2_g1ypb"]
+[ext_resource type="Script" uid="uid://bnfc6nw1qwb53" path="res://scripts/shop_door.gd" id="2_ukfef"]
+[ext_resource type="PackedScene" uid="uid://ew4eyyqxybnk" path="res://scenes/player.tscn" id="3_g1ypb"]
+[ext_resource type="FontFile" uid="uid://d1dqeqtblupfy" path="res://fonts/ice-pixel7/ice_pixel-7.ttf" id="4_3b60b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b60b"]
+size = Vector2(128.865, 128.518)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukfef"]
+size = Vector2(10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kyi1n"]
+font = ExtResource("4_3b60b")
+font_size = 20
+
+[node name="inside_shop" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, 64)
+scale = Vector2(5, 5)
+texture = ExtResource("1_lajga")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(75, 322.75)
+scale = Vector2(1.15625, 0.964844)
+texture = ExtResource("1_lajga")
+script = ExtResource("2_ukfef")
+
+[node name="Area2D" type="Area2D" parent="Icon2"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon2/Area2D"]
+position = Vector2(-0.432442, 0.259094)
+shape = SubResource("RectangleShape2D_3b60b")
+
+[node name="item1" type="Area2D" parent="."]
+position = Vector2(-66, 43)
+scale = Vector2(5, 5)
+collision_mask = 3
+script = ExtResource("2_g1ypb")
+
+[node name="Sprite2D" type="Sprite2D" parent="item1"]
+position = Vector2(5, 5)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_lajga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item1"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ukfef")
+
+[node name="Label" type="Label" parent="item1"]
+texture_filter = 1
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 61.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+text = "4 DOLLAH"
+label_settings = SubResource("LabelSettings_kyi1n")
+
+[node name="item2" type="Area2D" parent="."]
+position = Vector2(6.99999, 43)
+scale = Vector2(5, 5)
+collision_mask = 3
+script = ExtResource("2_g1ypb")
+
+[node name="Sprite2D" type="Sprite2D" parent="item2"]
+position = Vector2(5, 5)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_lajga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item2"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ukfef")
+
+[node name="Label" type="Label" parent="item2"]
+texture_filter = 1
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 61.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+text = "4 DOLLAH"
+label_settings = SubResource("LabelSettings_kyi1n")
+
+[node name="item3" type="Area2D" parent="."]
+position = Vector2(89, 43)
+scale = Vector2(5, 5)
+collision_mask = 3
+script = ExtResource("2_g1ypb")
+
+[node name="Sprite2D" type="Sprite2D" parent="item3"]
+position = Vector2(5, 5)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_lajga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item3"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ukfef")
+
+[node name="Label" type="Label" parent="item3"]
+texture_filter = 1
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 61.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+text = "4 DOLLAH"
+label_settings = SubResource("LabelSettings_kyi1n")
+
+[node name="item4" type="Area2D" parent="."]
+position = Vector2(163, 43)
+scale = Vector2(5, 5)
+collision_mask = 3
+script = ExtResource("2_g1ypb")
+
+[node name="Sprite2D" type="Sprite2D" parent="item4"]
+position = Vector2(5, 5)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("1_lajga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="item4"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_ukfef")
+
+[node name="Label" type="Label" parent="item4"]
+texture_filter = 1
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 61.0
+offset_bottom = 12.0
+scale = Vector2(0.2, 0.2)
+text = "4 DOLLAH"
+label_settings = SubResource("LabelSettings_kyi1n")
+
+[node name="player" parent="." instance=ExtResource("3_g1ypb")]
+
+[connection signal="body_entered" from="Icon2/Area2D" to="Icon2" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Icon2/Area2D" to="Icon2" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="item1" to="item1" method="_on_body_entered"]
+[connection signal="body_exited" from="item1" to="item1" method="_on_body_exited"]
+[connection signal="body_entered" from="item2" to="item2" method="_on_body_entered"]
+[connection signal="body_exited" from="item2" to="item2" method="_on_body_exited"]
+[connection signal="body_entered" from="item3" to="item3" method="_on_body_entered"]
+[connection signal="body_exited" from="item3" to="item3" method="_on_body_exited"]
+[connection signal="body_entered" from="item4" to="item4" method="_on_body_entered"]
+[connection signal="body_exited" from="item4" to="item4" method="_on_body_exited"]

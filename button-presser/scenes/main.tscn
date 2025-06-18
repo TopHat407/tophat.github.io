@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csxjk5rsh8f5s"]
+
+[ext_resource type="PackedScene" uid="uid://myfuyvad2c5b" path="res://scenes/button.tscn" id="1_o5qli"]
+
+[node name="main" type="Node2D"]
+
+[node name="button" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(580, 391)

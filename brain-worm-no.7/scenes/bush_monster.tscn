@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvhuifhjvjwby"]
+
+[ext_resource type="Script" uid="uid://jq6dwqspmtqo" path="res://scripts/bush_monster.gd" id="1_8hj8y"]
+[ext_resource type="Texture2D" uid="uid://cxqdnldoyltwy" path="res://art/bush above ground.png" id="2_1fl8x"]
+[ext_resource type="Texture2D" uid="uid://duau8afhjiugd" path="res://art/bush underground.png" id="3_ebp3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aefk1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvfqg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kr7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1fl8x")
+}],
+"loop": false,
+"name": &"above ground",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ebp3s")
+}],
+"loop": false,
+"name": &"underground",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fng5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hj8y"]
+
+[node name="bush_monster" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_8hj8y")
+
+[node name="chase area" type="Area2D" parent="."]
+scale = Vector2(3.63422, 3.43601)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chase area"]
+scale = Vector2(10.4326, 2.92764)
+shape = SubResource("RectangleShape2D_aefk1")
+debug_color = Color(1, 0.223786, 0.292109, 0.42)
+
+[node name="detection area" type="Area2D" parent="."]
+scale = Vector2(1.1383, 1.2948)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection area"]
+scale = Vector2(4.71388, 4.06712)
+shape = SubResource("RectangleShape2D_wvfqg")
+debug_color = Color(0.0232377, 0.391381, 0.0817875, 0.42)
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(0.015, 0.015)
+sprite_frames = SubResource("SpriteFrames_7kr7w")
+animation = &"above ground"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fng5a")
+
+[node name="wakeup_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="movement_timer" type="Timer" parent="."]
+
+[node name="attack_timer" type="Timer" parent="."]
+
+[node name="attack_zone" type="Area2D" parent="."]
+scale = Vector2(2.03156, 2.17126)
+collision_layer = 2
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
+shape = SubResource("RectangleShape2D_8hj8y")
+
+[connection signal="body_entered" from="chase area" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_exited" from="chase area" to="." method="_on_chase_area_body_exited"]
+[connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]
+[connection signal="timeout" from="movement_timer" to="." method="_on_movement_timer_timeout"]
+[connection signal="body_entered" from="attack_zone" to="." method="_on_attack_zone_body_entered"]

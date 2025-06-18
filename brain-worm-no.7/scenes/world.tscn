@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyuyhsj6y727i"]
+
+[ext_resource type="Script" uid="uid://cj4ah6esft353" path="res://scripts/world.gd" id="1_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://ew4eyyqxybnk" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Texture2D" uid="uid://bh7n5ggewljs" path="res://icon.svg" id="2_rwgxs"]
+[ext_resource type="PackedScene" uid="uid://dylrgblg0gto6" path="res://scenes/npc.tscn" id="3_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://gv145o2ppfbm" path="res://scenes/shop.tscn" id="4_71j4m"]
+[ext_resource type="PackedScene" uid="uid://d4k6n70vf2d0u" path="res://scenes/coin.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://bvhuifhjvjwby" path="res://scenes/bush_monster.tscn" id="6_qfnet"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_4mrxx")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(39, 140)
+scale = Vector2(15.6055, 8.91406)
+texture = ExtResource("2_rwgxs")
+
+[node name="npc" parent="." instance=ExtResource("3_4wyf3")]
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(261, 5)
+
+[node name="coin2" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(312, 5)
+
+[node name="coin3" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(312, 44)
+
+[node name="coin4" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(261, 44)
+
+[node name="coin5" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(261, 87)
+
+[node name="coin6" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(312, 87)
+
+[node name="coin7" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(312, 131)
+
+[node name="coin8" parent="coins" instance=ExtResource("4_k0juu")]
+position = Vector2(261, 131)
+
+[node name="shop" parent="." instance=ExtResource("4_71j4m")]
+position = Vector2(33, 383)
+
+[node name="bush_monster" parent="." instance=ExtResource("6_qfnet")]
+position = Vector2(-168, 211)
+scale = Vector2(3, 3)
+
+[node name="player" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(122, 5)

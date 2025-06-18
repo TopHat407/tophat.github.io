@@ -1,0 +1,149 @@
+[gd_scene load_steps=15 format=3 uid="uid://ew4eyyqxybnk"]
+
+[ext_resource type="Script" uid="uid://cgmeb0urowrok" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://c7krc1dwljvrl" path="res://art/Bush_Boy_1.0.png" id="2_qhqgy"]
+[ext_resource type="FontFile" uid="uid://d1dqeqtblupfy" path="res://fonts/ice-pixel7/ice_pixel-7.ttf" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://cy8hl6v8pljjo" path="res://scripts/lil_guy.gd" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://bhxoloq4uw2r7" path="res://art/lil guy.png" id="5_tuyoq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(28, 62)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqkch"]
+font = ExtResource("3_qhqgy")
+font_size = 120
+
+[sub_resource type="LabelSettings" id="LabelSettings_qlg0r"]
+font = ExtResource("3_qhqgy")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhqgy"]
+font = ExtResource("3_qhqgy")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_smehm"]
+font = ExtResource("3_qhqgy")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuyoq"]
+font = ExtResource("3_qhqgy")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjrip"]
+font = ExtResource("3_qhqgy")
+font_size = 80
+font_color = Color(0.527155, 0.0139648, 0.0139648, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ur7pv"]
+font = ExtResource("3_qhqgy")
+font_size = 40
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_qhqgy")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 2075.0
+offset_bottom = 1057.0
+color = Color(0.812278, 0.470243, 0.752993, 1)
+
+[node name="inventorylabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 111.0
+offset_right = 462.0
+offset_bottom = 231.0
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_dqkch")
+
+[node name="inventory" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 244.0
+offset_right = 1150.0
+offset_bottom = 1010.0
+text = "
+
+
+
+
+
+
+
+"
+label_settings = SubResource("LabelSettings_qlg0r")
+
+[node name="shopbaglabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 1247.0
+offset_top = 244.0
+offset_right = 1503.0
+offset_bottom = 324.0
+text = "SHOP BAG"
+label_settings = SubResource("LabelSettings_qhqgy")
+
+[node name="shopbag" type="Label" parent="CanvasLayer"]
+offset_left = 1247.0
+offset_top = 324.0
+offset_right = 1771.0
+offset_bottom = 610.0
+label_settings = SubResource("LabelSettings_smehm")
+
+[node name="debtlabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 1247.0
+offset_top = 610.0
+offset_right = 1375.0
+offset_bottom = 690.0
+text = "DEBT"
+label_settings = SubResource("LabelSettings_tuyoq")
+
+[node name="debt" type="Label" parent="CanvasLayer"]
+offset_left = 1247.0
+offset_top = 721.0
+offset_right = 1771.0
+offset_bottom = 1010.0
+label_settings = SubResource("LabelSettings_fjrip")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -91.0
+offset_right = 20.0
+offset_bottom = -68.0
+label_settings = SubResource("LabelSettings_ur7pv")
+
+[node name="lil_guy" type="CharacterBody2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_qlg0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="lil_guy"]
+texture_filter = 1
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("5_tuyoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lil_guy"]
+shape = SubResource("RectangleShape2D_fjrip")
+
+[node name="Camera2D" type="Camera2D" parent="lil_guy"]
+zoom = Vector2(3, 3)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
