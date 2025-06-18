@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://7jgtkr6r5vlo"]
+
+[ext_resource type="Script" uid="uid://ba4b21vninysi" path="res://scripts/dead.gd" id="1_jv4ud"]
+[ext_resource type="FontFile" uid="uid://d1dqeqtblupfy" path="res://fonts/ice-pixel7/ice_pixel-7.ttf" id="1_m8got"]
+[ext_resource type="AudioStream" uid="uid://c7c1uuanmfohj" path="res://audio/714925__muyo5438__spooky-piano-and-vox.mp3" id="3_b6jbn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_60ulc"]
+font = ExtResource("1_m8got")
+font_size = 120
+
+[node name="died" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jv4ud")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1972.0
+offset_bottom = 1146.0
+color = Color(0.441559, 0, 0.026829, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 202.0
+offset_right = 1226.0
+offset_bottom = 322.0
+text = "YOU DIED!!!!!"
+label_settings = SubResource("LabelSettings_60ulc")
+
+[node name="RETRY" type="Button" parent="."]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 454.0
+offset_right = 1023.0
+offset_bottom = 522.0
+theme_override_fonts/font = ExtResource("1_m8got")
+theme_override_font_sizes/font_size = 60
+text = "RETRY"
+
+[node name="QUIT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 605.0
+offset_right = 1007.0
+offset_bottom = 673.0
+theme_override_fonts/font = ExtResource("1_m8got")
+theme_override_font_sizes/font_size = 60
+text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b6jbn")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="RETRY" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwus0g2rc1osy"]
+
+[ext_resource type="Script" uid="uid://ck4fde0jdm77l" path="res://scripts/win.gd" id="1_ehdu1"]
+[ext_resource type="FontFile" uid="uid://d1dqeqtblupfy" path="res://fonts/ice-pixel7/ice_pixel-7.ttf" id="2_da18y"]
+[ext_resource type="AudioStream" uid="uid://gj3q1mbbtsit" path="res://audio/bondage-clown-show-30915.mp3" id="3_lf2oi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e16q"]
+font = ExtResource("2_da18y")
+font_size = 120
+
+[node name="win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ehdu1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2540.0
+offset_bottom = 1772.0
+color = Color(0.384314, 0.941176, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 196.0
+offset_right = 1231.0
+offset_bottom = 316.0
+text = "YOU WIN!!!!!!!"
+label_settings = SubResource("LabelSettings_0e16q")
+
+[node name="RESTART" type="Button" parent="."]
+layout_mode = 0
+offset_left = 834.0
+offset_top = 438.0
+offset_right = 1010.0
+offset_bottom = 506.0
+theme_override_fonts/font = ExtResource("2_da18y")
+theme_override_font_sizes/font_size = 60
+text = "RESTART"
+
+[node name="QUIT" type="Button" parent="."]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 598.0
+offset_right = 984.0
+offset_bottom = 666.0
+theme_override_fonts/font = ExtResource("2_da18y")
+theme_override_font_sizes/font_size = 60
+text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lf2oi")
+autoplay = true
+
+[connection signal="pressed" from="RESTART" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]
